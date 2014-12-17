@@ -56,6 +56,7 @@ module Paperclip
           queue.each do |style, file|
             begin
               geo = Geometry.from_file file
+              geo.auto_orient
               meta[style] = { width: geo.width.to_i, height: geo.height.to_i, size: file.size }
             rescue Paperclip::Errors::NotIdentifiedByImageMagickError
               meta[style] = {}
